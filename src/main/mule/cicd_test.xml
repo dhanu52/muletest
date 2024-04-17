@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="230a01e9-744b-40f3-9075-d93805f6e51c" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="cicd_testFlow" doc:id="d151289e-5370-4bf4-86cb-b7617d3c624b" >
+		<http:listener doc:name="Listener" doc:id="1216c08e-a087-4a10-b18c-09e1083e7246" config-ref="HTTP_Listener_config" path="cicd"/>
+		<logger level="INFO" doc:name="Logger" doc:id="85ad5593-c434-4147-9b4b-8ba48f731aac" message='#["Start Logger"]'/>
+		<set-payload value='#["The test is successful"]' doc:name="Set Payload" doc:id="a5f3cf75-b8b9-42b7-99f1-1e9f62bd8e25" />
+	</flow>
+</mule>
